@@ -1,0 +1,182 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar-brand img {
+  max-height: 40px;
+}
+
+.navbar {
+  padding: 0.8rem 1rem;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+/* Main content area */
+main {
+  min-height: 80vh;
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  font-size: 14px;
+  background-color: #222;
+  color: #ccc;
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+/* Buttons */
+button, .btn {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Forms */
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+form input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+form button {
+  margin-top: 15px;
+  padding: 10px 15px;
+}
+
+/* Product Cards */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.card img {
+  object-fit: cover;
+  height: 200px;
+}
+
+/* Cart Page */
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-list img {
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+/* Checkout */
+.checkout-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  max-width: 400px;
+  margin: auto;
+}
+
+/* Dashboard charts */
+canvas {
+  margin: 20px 0;
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar .form-control {
+    width: 150px;
+  }
+  
+  .card img {
+    height: 160px;
+  }
+}
+/* Compact Register Card */
+.register-card {
+    width: 420px;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+/* Compact inputs */
+.register-card input,
+.register-card textarea {
+    font-size: 14px;
+    padding: 6px 10px;
+    height: 38px;
+}
+
+/* Reduce spacing */
+.register-card .mb-2,
+.register-card .mb-3 {
+    margin-bottom: 10px !important;
+}
+
+.register-card h3 {
+    font-size: 22px;
+}
