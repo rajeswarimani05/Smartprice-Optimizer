@@ -1,0 +1,12 @@
+[
+  {"id":1,"name":"LED TV","description":"42-inch LED TV, crisp display.","base_price":5089.66,"competitor_price":5200,"stock":15,"demand":80,"image":"images/tv.jpg"},
+  {"id":2,"name":"Wireless Headphones","description":"Over-ear bluetooth headphones.","base_price":1948.91,"competitor_price":1950,"stock":50,"demand":40,"image":"images/headphones.jpg"},
+  {"id":3,"name":"Coffee Maker","description":"Automatic drip coffee machine.","base_price":3013.08,"competitor_price":3000,"stock":30,"demand":60,"image":"images/coffeemaker.jpg"},
+  {"id":4,"name":"Bluetooth Speaker","description":"Portable bluetooth speaker.","base_price":2405.17,"competitor_price":2450,"stock":20,"demand":55,"image":"images/speaker.jpg"},
+  {"id":5,"name":"Smartphone","description":"5G Smartphone, 128GB storage.","base_price":15000.00,"competitor_price":14900,"stock":25,"demand":70,"image":"images/smartphone.jpg"},
+  {"id":6,"name":"Laptop","description":"14-inch laptop, 8GB RAM, SSD.","base_price":42000.00,"competitor_price":41500,"stock":10,"demand":85,"image":"images/laptop.jpg"},
+  {"id":7,"name":"Smartwatch","description":"Fitness tracking smartwatch.","base_price":5000.00,"competitor_price":4900,"stock":40,"demand":50,"image":"images/smartwatch.jpg"},
+  {"id":8,"name":"Microwave Oven","description":"800W convection microwave.","base_price":7000.00,"competitor_price":6900,"stock":18,"demand":60,"image":"images/microwaveoven.jpg"},
+  {"id":9,"name":"Refrigerator","description":"Double-door refrigerator.","base_price":22000.00,"competitor_price":21800,"stock":12,"demand":75,"image":"images/fridge.jpg"},
+  {"id":10,"name":"Air Conditioner","description":"1.5 Ton Inverter AC.","base_price":28000.00,"competitor_price":28500,"stock":8,"demand":90,"image":"images/ac.jpg"}
+]
