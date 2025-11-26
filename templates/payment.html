@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">💳 Payment Options</h2>
+
+<form action="{{ url_for('process_payment') }}" method="POST">
+
+  <h5>Select Payment Method:</h5>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="payment_method" value="credit" required>
+    <label class="form-check-label">Credit Card</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="payment_method" value="debit">
+    <label class="form-check-label">Debit Card</label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="payment_method" value="googlepay">
+    <label class="form-check-label">Google Pay (UPI)</label>
+  </div>
+
+  <button class="btn btn-primary mt-3">Proceed</button>
+
+</form>
+{% endblock %}

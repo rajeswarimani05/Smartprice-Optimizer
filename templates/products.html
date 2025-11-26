@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Our Products</h2>
+  
+  <div class="row">
+    {% for product in products %}
+    <div class="col-md-3 mb-4">
+      <a href="{{ url_for('product', pid=product.id) }}" class="text-decoration-none text-dark">
+        <div class="card h-100 shadow-sm">
+          <!-- ✅ Fix image display (works for both URLs and local static images) -->
+          {% if 'http' in product.image %}
+            <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+          {% else %}
+            <img src="{{ url_for('static', filename='images/' ~ product.image) }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+          {% endif %}
+          
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text text-muted">{{ product.category }}</p>
+            <p class="fw-bold text-success">₹{{ product.base_price }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">🛒 Your Shopping Cart</h2>
+
+{% if items %}
+<table class="table table-striped align-middle">
+  <thead class="table-dark">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for it in items %}
+    <tr>
+      <td>{{ it.product.name }}</td>
+      <td>₹{{ "%.2f"|format(it.final_price) }}</td>
+      <td>{{ it.qty }}</td>
+      <td>₹{{ "%.2f"|format(it.final_price * it.qty) }}</td>
+      <td>
+        <form method="post" action="{{ url_for('remove_from_cart', cart_id=it.cart_id) }}" style="display:inline;">
+          <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="text-end mt-3">
+  <h4>Total: ₹{{ "%.2f"|format(total) }}</h4>
+  <p class="text-success">Cashback Balance: ₹{{ "%.2f"|format(cashback_balance) }}</p>
+</div>
+<div class="text-end mt-3">
+  <a href="{{ url_for('checkout') }}" class="btn btn-success btn-lg">Proceed to Payment</a>
+</div>
+
+{% else %}
+<div class="alert alert-info">Your cart is empty. <a href="{{ url_for('home') }}">Shop now!</a></div>
+{% endif %}
+{% endblock %}

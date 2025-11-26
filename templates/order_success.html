@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Order placed</h2>
+<p>Order #{{ order.id }} placed on {{ order.created_at.strftime('%Y-%m-%d %H:%M') }}.</p>
+<p>Cashback credited: ₹{{ cashback }}</p>
+<a class="btn btn-primary" href="{{ url_for('home') }}">Continue shopping</a>
+{% endblock %}

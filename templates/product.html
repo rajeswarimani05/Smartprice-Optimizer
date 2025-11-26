@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5">
+      {% if 'http' in product.image %}
+        <img src="{{ product.image }}" class="img-fluid rounded shadow" alt="{{ product.name }}">
+      {% else %}
+        <img src="{{ url_for('static', filename='images/' ~ product.image) }}" class="img-fluid rounded shadow" alt="{{ product.name }}">
+      {% endif %}
+    </div>
+
+    <div class="col-md-7">
+      <h2>{{ product.name }}</h2>
+      <p class="text-muted">{{ product.category }}</p>
+      <p>{{ product.description }}</p>
+      <h4 class="text-success">₹{{ product.base_price }}</h4>
+
+      {% if current_user.is_authenticated %}
+      <!-- ✅ Proper POST form to add item -->
+      <form action="{{ url_for('add_to_cart', pid=product.id) }}" method="POST" class="mt-3 d-flex align-items-center">
+        <input type="number" name="qty" value="1" min="1" class="form-control w-25 me-2" required>
+        <button type="submit" class="btn btn-primary">Add to Cart</button><br>
+      </form>
+       <button class="btn btn-outline-primary mt-3" id="negotiate-btn">
+    🤝 Auto Negotiate Price
+</button>
+
+<div id="nego-result" class="mt-3 text-primary fw-bold"></div>
+   
+      {% else %}
+      <!-- If user not logged in -->
+      <a href="{{ url_for('login') }}" class="btn btn-warning mt-3">Login to Add to Cart</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<br>
+<script>
+document.getElementById("negotiate-btn").addEventListener("click", function() {
+    fetch("/auto_negotiate/{{ product.id }}")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("nego-result").innerHTML = `
+                🎉 Negotiated Price: ₹${data.final_price}<br>
+                💸 You Saved: ₹${data.discount}<br>
+                ⭐ Extra Discount Applied: ${data.extra_discount}%<br>
+                👤 User Type: ${data.user_type}
+            `;
+        })
+        .catch(err => {
+            document.getElementById("nego-result").innerHTML =
+                "❌ Error negotiating price.";
+        });
+});
+</script>
+<hr>
+
+<h4>Nearest Service Centers</h4>
+
+{% if centers %}
+  <ul class="list-group mb-3">
+    {% for c in centers %}
+      <li class="list-group-item">
+        <b>{{ c.name }}</b><br>
+        {{ c.address }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p class="text-muted">No service centers found for your area.</p>
+{% endif %}
+<div id="map" style="height: 300px; width: 100%;"></div>
+
+<script>
+// Read data safely from Jinja → JS
+let userLat = Number("{{ user_lat or 0 }}");
+let userLng = Number("{{ user_lng or 0 }}");
+
+// Safe JSON conversion
+let serviceCenters = [];
+
+try {
+    serviceCenters = JSON.parse('{{ centers | tojson | safe }}');
+} catch (e) {
+    serviceCenters = [];
+}
+
+function initMap() {
+
+    let mapCenter = {
+        lat: userLat || 20.5937,   // fallback India
+        lng: userLng || 78.9629
+    };
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: mapCenter
+    });
+
+    // User marker
+    if (userLat && userLng) {
+        new google.maps.Marker({
+            position: { lat: userLat, lng: userLng },
+            map: map,
+            title: "Your Location",
+            icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+        });
+    }
+
+    // Service Centers
+    serviceCenters.forEach(c => {
+        new google.maps.Marker({
+            position: { lat: c.lat, lng: c.lng },
+            map: map,
+            title: c.name
+        });
+    });
+}
+</script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&callback=initMap"></script>
+
+{% endblock %}

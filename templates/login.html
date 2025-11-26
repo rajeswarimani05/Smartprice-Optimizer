@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card shadow-lg p-4" style="width: 400px; border-radius: 15px;">
+    <h3 class="text-center mb-3 text-primary fw-bold">Welcome Back 👋</h3>
+    <form method="POST" action="{{ url_for('login') }}">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+        <input type="email" name="email" class="form-control form-control-lg" placeholder="Enter your email" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Password</label>
+        <input type="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required>
+      </div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <input type="checkbox" name="remember" id="remember">
+          <label for="remember">Remember me</label>
+        </div>
+        <a href="{{ url_for('forgot_password') }}" class="text-decoration-none text-primary fw-semibold">Forgot Password?</a>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 btn-lg rounded-pill">Login</button>
+    </form>
+    <p class="text-center mt-3 mb-0">
+      New here? <a href="{{ url_for('register') }}" class="fw-semibold text-decoration-none text-success">Create an account</a>
+    </p>
+  </div>
+</div>
+{% endblock %}
